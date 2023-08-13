@@ -1,0 +1,64 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  animation: fade-in 0.3s ease-out;
+  .modal-content {
+    @include transformCentering;
+    width: 500px;
+    height: 119px;
+    font-size: 18px;
+    @include fontWeight500;
+    text-align: center;
+    background-color: white;
+    padding: 21px 23px;
+    border-radius: 8px;
+    p {
+      padding: 22px 0;
+      margin-top: 41px;
+    }
+    .close {
+      position: absolute;
+      top: 21px;
+      right: 23px;
+      font-size: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+  &::selection {
+    background-color: $violet;
+    color: $white;
+  }
+  &.fade-out {
+    animation: fade-out 0.3s ease-out;
+  }
+}
+
+// Animation for fade-in (opening effect)
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animation for fade-out (close effect)
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}

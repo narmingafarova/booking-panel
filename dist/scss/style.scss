@@ -1,0 +1,272 @@
+@import "./helpers/var";
+@import "./helpers/mixin";
+
+@import "./helpers/sidebar";
+@import "./helpers/calendar";
+@import "./helpers/modal";
+
+body {
+  background: linear-gradient(135deg, #8e53e4 0%, #4b22b9 100%);
+  background-size: cover;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  // prettier-ignore
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+  button {
+    cursor: pointer;
+  }
+  .bg-img {
+    background-image: url("../img/bg-shape.svg");
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    .main-panel {
+      @include transformCentering;
+      width: 980px;
+      height: 580px;
+      background-color: $white;
+      display: flex;
+      .panel-content {
+        background-color: #f5f7fa;
+        width: 750px;
+        height: 100%;
+        position: relative;
+        // For all panels
+        .section-panel {
+          display: none;
+          .panel-header {
+            padding: 19px 25px 14px 30px;
+            border-bottom: 1px solid $border_white;
+            @include flexSBetweenCenter;
+            h3 {
+              font-size: 18px;
+              @include fontWeight500;
+              margin: 0;
+            }
+            button {
+              border: none;
+              background-color: transparent;
+              cursor: pointer;
+            }
+          }
+          .panel-body {
+            padding: 25px 30px 0;
+            .panel-card {
+              background-color: $white;
+              display: flex;
+              cursor: pointer;
+              &.selected {
+                border: 2px solid $light_green;
+              }
+              .card-img {
+                padding: 15px 22px 15px 20px;
+                img {
+                  border-radius: 50px;
+                }
+              }
+              .card-info {
+                padding: 19px 20px 22px 0;
+                width: 100%;
+                .card-name {
+                  color: $side_black;
+                  font-size: 14px;
+                  @include fontWeight500;
+                  text-transform: capitalize;
+                }
+                .card-email {
+                  color: #828f9a;
+                  font-size: 12px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: 19px;
+                }
+              }
+            }
+          }
+        }
+        // First staff panel
+        .staff-panel {
+          .panel-body {
+            .panel-card {
+              &:not(:last-child) {
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+        // Second service panel
+        .service-panel {
+          .panel-body {
+            .panel-card {
+              justify-content: space-between;
+              .info-part {
+                display: flex;
+                width: 100%;
+              }
+              .price {
+                padding: 24px 20px 17px 0;
+                color: $green;
+                font-size: 26px;
+                @include fontWeight500;
+              }
+              &:not(:last-child) {
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+        // Third date & time panel
+        .date-panel {
+          .date-panel-body {
+            @include flexSBetweenCenter;
+            .time-schedule {
+              .calendar-header {
+                margin-bottom: 19px;
+                width: 305px;
+              }
+              .calendar-content {
+                width: 305px;
+              }
+              .time-select {
+                color: $violet;
+                @include font14Weight400;
+                padding: 15px 0 12px;
+                border-bottom: 1px solid $border_white;
+              }
+              .time-grid {
+                width: 275px;
+                height: 238px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                padding: 12px 15px;
+                div {
+                  width: 42px;
+                  height: 42px;
+                  padding: 7px 22px 6px 21px;
+                  background: #eceff2;
+                  color: $black_2;
+                  @include font14Weight400;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+        // Last personal info panel
+        .confirm-panel {
+          form {
+            .form-inputs {
+              @include flexSBetweenCenter;
+              flex-wrap: wrap;
+              .input-group {
+                display: flex;
+                flex-direction: column;
+                width: 335px;
+                label {
+                  color: $side_black;
+                  @include font14Weight400;
+                  span {
+                    color: #ef264d;
+                  }
+                  margin-bottom: 9px;
+                }
+                input {
+                  height: 46px;
+                  padding-left: 15px;
+                  &::-webkit-inner-spin-button {
+                    display: none;
+                  }
+                  &:-webkit-autofill,
+                  &:-webkit-autofill:focus {
+                    transition: background-color 0s 600000s, color 0s 600000s;
+                  }
+                }
+                input,
+                .note-content {
+                  border-radius: 2px;
+                  border: 1px solid $border_white;
+                  background: $white;
+                  outline: none;
+                }
+                &:last-child {
+                  width: 690px;
+                  height: 140px;
+                  .note-content {
+                    height: 100%;
+                    padding: 19px 0 13px 26px;
+                    h5 {
+                      color: $violet;
+                      @include font14Weight400;
+                      span {
+                        color: $black_2;
+                        margin-left: 12px;
+                        font-weight: 300;
+                      }
+                      &:last-child {
+                        span {
+                          color: $green !important;
+                        }
+                      }
+                    }
+                  }
+                }
+                margin-bottom: 25px;
+              }
+            }
+            .form-btn {
+              display: none;
+            }
+          }
+        }
+        // Panel switching buttons
+        .content-foot {
+          @include sectionFoots;
+          background-color: $border_white;
+          .foot-btns {
+            @include flexSBetweenCenter;
+            padding: 0 30px;
+            margin-top: 19px;
+            button {
+              padding: 9px 14px;
+              text-transform: uppercase;
+              border-radius: 2px;
+              background-color: $violet;
+              border: none;
+              color: $white;
+              @include font12Weight600;
+              line-height: normal;
+              height: 36px;
+            }
+            .back-btn {
+              border-radius: 2px;
+              border: 1px solid $border_white;
+              background-color: #f7f8fb;
+              color: #8f9ca7;
+            }
+            .panel-alert {
+              display: none;
+              justify-content: center;
+              align-items: center;
+              background-color: #f4be6c;
+              border-radius: 2px;
+              padding: 9px 14px;
+              opacity: 0;
+              transition: opacity 0.5s;
+              span {
+                color: $white;
+                text-align: right;
+                @include font12Weight600;
+                line-height: normal;
+                text-transform: uppercase;
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
